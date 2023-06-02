@@ -34,7 +34,8 @@ const ExpenseForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    console.log(userInput);
+    console.log({ ...userInput, date: new Date(userInput.date) });
+
     setUserInput({
       title: '',
       amount: '',
