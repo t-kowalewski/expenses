@@ -3,12 +3,12 @@ import './ExpenseForm.css';
 
 const ExpenseForm = ({ onSaveExpenseData }) => {
   // const [expenseTitle, setExpenseTitle] = useState('');
-  // const [expenseAmount, setExpenseAmount] = useState('');
+  // const [expenseprice, setExpenseprice] = useState('');
   // const [expenseDate, setExpenseDate] = useState('');
 
   const [userInput, setUserInput] = useState({
     title: '',
-    amount: '',
+    price: '',
     date: '',
   });
 
@@ -18,10 +18,10 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
       return { ...prevInput, title: e.target.value };
     });
   };
-  const amountChangeHandler = (e) => {
-    // setExpenseAmount(e.target.value);
+  const priceChangeHandler = (e) => {
+    // setExpenseprice(e.target.value);
     setUserInput((prevInput) => {
-      return { ...prevInput, amount: e.target.value };
+      return { ...prevInput, price: e.target.value };
     });
   };
   const dateChangeHandler = (e) => {
@@ -37,11 +37,14 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
     const newExpense = { ...userInput, date: new Date(userInput.date) };
 
     console.log(newExpense);
+    // Test for empty fields
+    // newExpense.find((item))
+
     onSaveExpenseData(newExpense);
 
     setUserInput({
       title: '',
-      amount: '',
+      price: '',
       date: '',
     });
   };
@@ -60,16 +63,16 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
           />
         </div>
 
-        {/* Amount */}
+        {/* price */}
         <div className='new-expense__control'>
-          <label htmlFor='amount'>Amount</label>
+          <label htmlFor='price'>Price</label>
           <input
             type='number'
             min='0.01'
             step='0.01'
-            id='amount'
-            value={userInput.amount}
-            onChange={amountChangeHandler}
+            id='price'
+            value={userInput.price}
+            onChange={priceChangeHandler}
           />
         </div>
 
