@@ -23,9 +23,13 @@ const ExpensesList = ({ expenses }) => {
         onFilterYear={filterYearHandler}
       />
 
-      {filteredExpenses.map((expense) => {
-        return <ExpenseItem key={expense.id} expense={expense} />;
-      })}
+      {filteredExpenses.length === 0 ? (
+        <p>No expenses found</p>
+      ) : (
+        filteredExpenses.map((expense) => {
+          return <ExpenseItem key={expense.id} expense={expense} />;
+        })
+      )}
     </Card>
   );
 };
