@@ -1,36 +1,18 @@
-import { useState } from 'react';
-
 import './ExpensesList.css';
-import ExpensesFilter from './ExpensesFilter';
-import Card from '../UI/Card';
+
 import ExpenseItem from './ExpenseItem';
 
-const ExpensesList = ({ expenses }) => {
-  const [filteredYear, setFilteredYear] = useState('2023');
-
-  const filteredExpenses = expenses.filter((item) => {
-    return item.date.getFullYear().toString() === filteredYear;
-  });
-
-  const filterYearHandler = (e) => {
-    setFilteredYear(e.target.value);
-  };
+const ExpensesList = ({ filteredExpenses }) => {
+  if (filteredExpenses.length === 0) {
+    return <h3 className='expenses-list__fallback'>No expenses found</h3>;
+  }
 
   return (
-    <Card className='expenses'>
-      <ExpensesFilter
-        selectedYear={filteredYear}
-        onFilterYear={filterYearHandler}
-      />
-
-      {filteredExpenses.length === 0 ? (
-        <p>No expenses found</p>
-      ) : (
-        filteredExpenses.map((expense) => {
-          return <ExpenseItem key={expense.id} expense={expense} />;
-        })
-      )}
-    </Card>
+    <ul className='expenses-list'>
+      {filteredExpenses.map((expense) => {
+        return <ExpenseItem key={expense.id} expense={expense} />;
+      })}
+    </ul>
   );
 };
 
