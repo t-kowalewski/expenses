@@ -8,7 +8,9 @@ import ExpenseItem from './ExpenseItem';
 const ExpensesList = ({ expenses }) => {
   const [filteredYear, setFilteredYear] = useState('2023');
 
-  console.log(filteredYear);
+  const filteredExpenses = expenses.filter((item) => {
+    return item.date.getFullYear().toString() === filteredYear;
+  });
 
   const filterYearHandler = (e) => {
     setFilteredYear(e.target.value);
@@ -21,7 +23,7 @@ const ExpensesList = ({ expenses }) => {
         onFilterYear={filterYearHandler}
       />
 
-      {expenses.map((expense) => {
+      {filteredExpenses.map((expense) => {
         return <ExpenseItem key={expense.id} expense={expense} />;
       })}
     </Card>
