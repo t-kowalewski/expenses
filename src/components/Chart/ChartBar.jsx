@@ -2,9 +2,8 @@ import './ChartBar.css';
 
 const ChartBar = ({ value, maxValue, label }) => {
   let barFillHeight = '0';
-
   if (maxValue > 0) {
-    barFillHeight = (maxValue - (maxValue - value)).toString();
+    barFillHeight = (value * 100) / maxValue.toString();
   }
 
   return (

@@ -15,7 +15,7 @@ const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
   };
   const priceChangeHandler = (e) => {
     setUserInput((prevInput) => {
-      return { ...prevInput, price: e.target.value };
+      return { ...prevInput, price: +e.target.value };
     });
   };
   const dateChangeHandler = (e) => {

@@ -16,7 +16,6 @@ const NewExpense = ({ onAddExpense }) => {
       id: Math.random().toString(),
     };
 
-    console.log(expenseData);
     onAddExpense(expenseData);
     toggleFormHandler();
   };
