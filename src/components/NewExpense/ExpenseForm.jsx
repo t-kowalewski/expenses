@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({ onSaveExpenseData }) => {
-  // const [expenseTitle, setExpenseTitle] = useState('');
-  // const [expenseprice, setExpenseprice] = useState('');
-  // const [expenseDate, setExpenseDate] = useState('');
-
+const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
   const [userInput, setUserInput] = useState({
     title: '',
     price: '',
@@ -13,19 +9,16 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
   });
 
   const titleChangeHandler = (e) => {
-    // setExpenseTitle(e.target.value);
     setUserInput((prevInput) => {
       return { ...prevInput, title: e.target.value };
     });
   };
   const priceChangeHandler = (e) => {
-    // setExpenseprice(e.target.value);
     setUserInput((prevInput) => {
       return { ...prevInput, price: e.target.value };
     });
   };
   const dateChangeHandler = (e) => {
-    // setExpenseDate(e.target.value);
     setUserInput((prevInput) => {
       return { ...prevInput, date: e.target.value };
     });
@@ -38,7 +31,6 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 
     console.log(newExpense);
     // Test for empty fields
-    // newExpense.find((item))
 
     onSaveExpenseData(newExpense);
 
@@ -91,6 +83,9 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
       </div>
 
       <div className='new-expense__actions'>
+        <button type='button' onClick={toggleFormHandler}>
+          Cancel
+        </button>
         <button type='submit'>Add</button>
       </div>
     </form>
