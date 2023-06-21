@@ -31,6 +31,12 @@ const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
 
     console.log(newExpense);
     // Test for empty fields
+    for (const key in newExpense) {
+      if (!newExpense[key] || isNaN(newExpense[key])) {
+        alert("Fields can't be empty");
+        return;
+      }
+    }
 
     onSaveExpenseData(newExpense);
 
