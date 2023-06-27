@@ -8,19 +8,13 @@ const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
     date: '',
   });
 
-  const titleChangeHandler = (e) => {
+  const inputChangeHandler = (e) => {
     setUserInput((prevInput) => {
-      return { ...prevInput, title: e.target.value };
-    });
-  };
-  const priceChangeHandler = (e) => {
-    setUserInput((prevInput) => {
-      return { ...prevInput, price: +e.target.value };
-    });
-  };
-  const dateChangeHandler = (e) => {
-    setUserInput((prevInput) => {
-      return { ...prevInput, date: e.target.value };
+      return {
+        ...prevInput,
+        [e.target.id]:
+          e.target.id !== 'price' ? e.target.value : +e.target.value,
+      };
     });
   };
 
@@ -32,7 +26,10 @@ const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
     console.log(newExpense);
     // Test for empty fields
     for (const key in newExpense) {
-      if (!newExpense[key] || isNaN(newExpense[key])) {
+      if (
+        !newExpense[key] ||
+        (typeof newExpense[key] === 'object' && isNaN(newExpense[key]))
+      ) {
         alert("Fields can't be empty");
         return;
       }
@@ -57,7 +54,7 @@ const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
             type='text'
             id='title'
             value={userInput.title}
-            onChange={titleChangeHandler}
+            onChange={inputChangeHandler}
           />
         </div>
 
@@ -70,7 +67,7 @@ const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
             step='0.01'
             id='price'
             value={userInput.price}
-            onChange={priceChangeHandler}
+            onChange={inputChangeHandler}
           />
         </div>
 
@@ -83,7 +80,7 @@ const ExpenseForm = ({ onSaveExpenseData, toggleFormHandler }) => {
             max='2024-12-31'
             id='date'
             value={userInput.date}
-            onChange={dateChangeHandler}
+            onChange={inputChangeHandler}
           />
         </div>
       </div>
